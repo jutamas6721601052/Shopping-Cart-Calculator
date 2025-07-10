@@ -51,13 +51,13 @@ public class ShoppingCartManualTest {
         //Test 4: คำนวณในกรณีที่ใช้ส่วนลด BOGO
         ArrayList<CartItem> BOGOCart = new ArrayList<>();
         BOGOCart.add(new CartItem("BOGO", "Bread", 25.0, 4)); // จาก100ลดเหลือ50
-        BOGOCart.add(new CartItem("BOGO", "Milk", 15.0, 2));      // 30เหลือ15
+        BOGOCart.add(new CartItem("BOGO", "Milk", 15.0, 3));      // 45ลดเหลือ30
         double total4 = ShoppingCartCalculator.calculateTotalPrice(BOGOCart);
-        if (total4 == 65) {
-            System.out.println("PASSED: BOGO cart total is correct (65.0)");
+        if (total4 == 80) {
+            System.out.println("PASSED: BOGO cart total is correct (80.0)");
             passedCount++;
         } else {
-            System.out.println("FAILED: BOGO cart total expected 65.0 but got " + total4);
+            System.out.println("FAILED: BOGO cart total expected 80.0 but got " + total4);
             failedCount++;
         }
         
@@ -73,7 +73,7 @@ public class ShoppingCartManualTest {
             System.out.println("FAILED: BULK cart total expected 229.5 but got " + total5);
             failedCount++;
         }
-        //Test 9: คำนวณในกรณีที่ใช้ส่วนลด BULK เเละไม่ตรงเงื่อนไข (หนูเขียนเพราะ พอดีตอนรันเทส6เเล้วมันติดexceptionมันบอกว่าindexเกิน)
+        //Test 9: คำนวณในกรณีที่ใช้ส่วนลด BULK เเละไม่ตรงเงื่อนไข (หนูเขียนเพราะ พอดีตอนรันเทส6เเล้วมันติดexceptionมันบอกว่าindexเกิน) หนูเลยต้อง.size()-1เเต่หนูก็ยังไม่ได้เช็คมากกว่านี้กว่ามันจะได้มั้ยถ้าข้อมูลมากกว่านี้
         ArrayList<CartItem> don2BULKCart = new ArrayList<>();
         don2BULKCart.add(new CartItem("BULK", "Bread", 25.0, 3)); // 75
         don2BULKCart.add(new CartItem("BULK", "Milk", 15.0, 2));      // 30
@@ -91,7 +91,7 @@ public class ShoppingCartManualTest {
         donBULKCart.add(new CartItem("BULK", "Milk", 15.0, 2));      // 30
         double total6 = ShoppingCartCalculator.calculateTotalPrice(donBULKCart);
         if (total6 == 165.0) {
-            System.out.println("PASSED: Simple cart total is correct (165.0)");
+            System.out.println("PASSED: BULK and Simple cart total is correct (165.0)");
             passedCount++;
         } else {
             System.out.println("FAILED: Simple cart total expected 165.0 but got " + total6);

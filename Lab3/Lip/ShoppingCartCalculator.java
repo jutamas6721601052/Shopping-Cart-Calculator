@@ -10,7 +10,6 @@ public class ShoppingCartCalculator {
      * - กฎส่วนลด BULK (ซื้อ >= 6 ชิ้น ลด 10%)
      */
     public static double calculateTotalPrice(ArrayList<CartItem> items) {
-        
         if(items==null) return 0.0; //Test1 ตกกรณีนี้
         if(items.isEmpty()==true) return 0.0; //Test2 ตกกรณีนี้
         
@@ -31,15 +30,15 @@ public class ShoppingCartCalculator {
             }
         }
         //Test5,6,9 อาจตกloopนี้ ส่วนหนูอาจสอบตกค่ะ
-        for(int i=0;i<items.size();i++){ 
+        for(int i=0;i<items.size()-1;i++){ 
            if((items.get(i).sku()=="BULK")&&(items.get(i+1).sku()=="BULK")){
            if(items.get(i).quantity()>=6){
            if(items.get(i+1).quantity()>=6) return (items.get(i).price()*items.get(i).quantity())*0.9+(items.get(i+1).price()*items.get(i+1).quantity())*0.9;
+           else return (items.get(i).price()*items.get(i).quantity())*0.9+(items.get(i+1).price()*items.get(i+1).quantity());
            }else if(items.get(i+1).quantity()>=6) return (items.get(i).price()*items.get(i).quantity())+(items.get(i+1).price()*items.get(i+1).quantity())*0.9;
             else return (items.get(i).price()*items.get(i).quantity())+(items.get(i+1).price()*items.get(i+1).quantity());
+           }
         }
-        
-    }
-    return 0.0;
+    return 1.0;
     }
 }
